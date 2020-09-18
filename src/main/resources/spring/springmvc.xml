@@ -1,0 +1,69 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+        <context:component-scan base-package="com.powernode.controller"/>
+
+        <!--<context:property-placeholder location="classpath:properties/constant.properties"/>-->
+
+        <import resource="classpath:spring/property.xml"/>
+
+        <!--<mvc:annotation-driven>
+                <mvc:message-converters register-defaults="true">
+                        <bean class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">
+                                <property name="supportedMediaTypes" value="application/json"/>
+                                &lt;!&ndash;设置fastjson特性&ndash;&gt;
+                                <property name="features">
+                                        <array>
+                                                &lt;!&ndash;设置null值也要输出，fastjson默认是关闭的&ndash;&gt;
+                                                <value>WriteMapNullValue</value>
+                                                &lt;!&ndash;设置使用文本方式输出日期，fastjson默认是long&ndash;&gt;
+                                                <value>WriteDateUseDateFormat</value>
+                                        </array>
+                                </property>
+                        </bean>
+                </mvc:message-converters>
+
+        </mvc:annotation-driven>-->
+        <mvc:annotation-driven>
+                <mvc:message-converters register-defaults="true">
+                        <!-- 配置Fastjson支持 -->
+                        <bean class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">
+                                <property name="supportedMediaTypes">
+                                        <list>
+                                                <value>application/json</value>
+                                                <value>text/html;charset=UTF-8</value>
+                                        </list>
+                                </property>
+                                <property name="features">
+                                        <list>
+                                                <value>WriteMapNullValue</value>
+                                                <value>QuoteFieldNames</value>
+                                        </list>
+                                </property>
+                        </bean>
+                </mvc:message-converters>
+        </mvc:annotation-driven>
+
+        <mvc:default-servlet-handler/>
+
+        <!--<mvc:resources mapping="/" location="html"/>-->
+
+        <!--文件上传-->
+
+        <!--json转换器-->
+
+        <!--时间转换器-->
+
+        <!--视图映射器-->
+
+        <!--配置拦截器-->
+</beans>
